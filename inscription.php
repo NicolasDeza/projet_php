@@ -44,13 +44,18 @@ if (empty($erreurs) && isset($resultat['data'])) {
     } catch (PDOException $e) {
         echo "<p>Erreur d'exécution de requête : " . $e->getMessage() . "</p>";
     } 
-}  else {
-    foreach ($erreurs as $erreur) {
-        echo "<p style='color: red;'>$erreur</p>";
-    }
-}
+}  
 ?>
 
+<div class="form-container">
+    <div class="error-messages">
+        <?php
+        if (!empty($erreurs)) {
+            foreach ($erreurs as $erreur) {
+                echo "<p>" . htmlspecialchars($erreur) . "</p>";
+            }
+        }
+        ?>
 
 <form method="POST" action="inscription.php">
 

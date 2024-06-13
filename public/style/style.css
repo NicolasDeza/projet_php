@@ -1,6 +1,7 @@
 html,
 body {
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 div#wrapp {
   display: grid;
@@ -39,6 +40,14 @@ header nav ul li a {
   padding: 0 10px;
   color: #333;
   font-size: 1.1em;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+header nav ul li a:hover,
+header nav ul li a:focus {
+  cursor: pointer;
+  font-weight: bold;
+  transform: scale(1.5);
+  color: #000;
 }
 h1 a {
   text-decoration: none;
@@ -54,6 +63,32 @@ h1 {
 /* Main */
 main {
   grid-area: main;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form {
+  border: 1px solid black;
+  padding: 30px;
+  border-radius: 20px;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.error-messages {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.error-messages p {
+  color: red;
+  text-align: center;
+  margin: 5px 0;
 }
 
 /* Footer */
@@ -62,7 +97,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 270px;
+  height: 210px;
   margin-top: auto;
   background-color: #fff;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
@@ -72,7 +107,7 @@ footer {
 /* Adaptation smartphone */
 @media screen and (max-width: 480px) {
   body {
-    background-color: blueviolet;
+    background-color: #f9f2e5;
   }
   div#wrapp {
     grid-template-columns: 1fr;

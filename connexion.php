@@ -57,12 +57,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-if (!empty($erreurs)) {
-    foreach ($erreurs as $erreur) {
-        echo "<p style='color: red;'>$erreur</p>";
-    }
-}
+
 ?>
+<div class="form-container">
+    <div class="error-messages">
+        <?php
+        if (!empty($erreurs)) {
+            foreach ($erreurs as $erreur) {
+                echo "<p>" . htmlspecialchars($erreur) . "</p>";
+            }
+        }
+        ?>
+
 
 <form id="connexion" method="post" action="" >
     <label for="connexion_email">Email :</label>
