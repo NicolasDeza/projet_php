@@ -20,10 +20,6 @@ $success = isset($result['success']) ? $result['success'] : '';
                 echo "<p>" . htmlspecialchars($erreur) . "</p>";
             }
         }
-
-        if (!empty($success)) {
-            echo "<p>" . htmlspecialchars($success) . "</p>";
-        }
         ?>
     </div>
 
