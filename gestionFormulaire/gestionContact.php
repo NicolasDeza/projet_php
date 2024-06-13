@@ -39,6 +39,7 @@ function traiterFormulaireContact() {
             $erreurs[] = "Le message ne peut contenir qu'entre 10 et 3000 caractères.";
         }
 
+      
     }
 
     return ["errors" => $erreurs];
