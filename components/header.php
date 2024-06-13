@@ -20,7 +20,10 @@ session_start();
         <nav>
             <ul>
                 <li><a href="index.php">Acceuil</a></li>
+
+                <?php if(!isset($_SESSION['user_email'])): ?>
                 <li><a href="inscription.php">Inscription</a></li>
+                <?php endif; ?>
     
                 <?php if (!isset($_SESSION['user_email'])): ?>
                     <li><a href="connexion.php">Connexion</a></li>
