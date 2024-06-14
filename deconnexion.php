@@ -3,10 +3,10 @@
 session_start();
 
 
-session_unset();  // Libérer toutes les variables de session
+session_unset();  
 
 
-session_destroy();  // Détruire la session
+session_destroy();  
 
 
 setcookie('user_email', '', time() - 3600, '/'); 

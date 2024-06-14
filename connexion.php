@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 setcookie("user_email", $email, time() + 3600);
                 setcookie("user_name", $pseudo, time() + 3600);
-                echo "<p>" . "Vous êtes bien connecté avec vos accès : " . $_COOKIE['user_email'] . $_COOKIE['user_name'] . "</p>";
+               
 
                 header("Location: bienvenue.php"); 
                 exit;

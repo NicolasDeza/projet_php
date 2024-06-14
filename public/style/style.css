@@ -158,7 +158,7 @@ li#li-deconnexion a {
 }
 
 /* Adaptation smartphone */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 340px) {
   body {
     background-color: #f9f2e5;
     background-image: none;
@@ -172,7 +172,7 @@ li#li-deconnexion a {
   }
 
   header {
-    height: 120px;
+    height: auto;
     margin-bottom: 50px;
     padding: 10px;
     align-items: center;
@@ -182,8 +182,13 @@ li#li-deconnexion a {
 
   nav {
     width: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
+  nav ul {
+    flex-direction: column;
+  }
   header nav ul li {
     padding-right: 0.9rem;
   }
@@ -201,6 +206,7 @@ li#li-deconnexion a {
     max-width: 80%;
   }
   footer {
+    text-align: center;
     height: 180px;
   }
 }
