@@ -18,13 +18,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $result['email'];
         $mdp = $result['mdp'];
 
-        $nomDuServeur = "localhost";
-        $nomUtilisateur = "root";
-        $motDePasse = ""; 
-        $nomBaseDeDonnees = "projet_php";
+        $nomDuServeur = "sql308.infinityfree.com";
+        $nomUtilisateur = "if0_36730460";
+        $motDePasse = "35ShuX2HiwVdMM"; 
+        $nomBaseDeDonnees = "if0_36730460_";
 
         try {
-            $pdo = new PDO("mysql:host=$nomDuServeur;dbname=$nomBaseDeDonnees", $nomUtilisateur);
+            $pdo = new PDO("mysql:host=$nomDuServeur;dbname=$nomBaseDeDonnees", $nomUtilisateur,$motDePasse);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $requete = $pdo->prepare("SELECT pseudo, mot_de_passe FROM utilisateurs WHERE email = :email");
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ?>
 
 
-<form  method="POST" action="" >
+<form    method="POST" action="" >
     <label for="connexion_email">Email :</label>
     <input type="email" id="connexion_email" name="connexion_email" required>
     <br><br>
