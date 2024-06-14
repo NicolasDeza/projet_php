@@ -30,6 +30,11 @@ session_start();
                 <?php endif; ?>
 
                 <li><a href="contact.php">Contact</a></li>
+                 
+                      <!-- BOUTON DECONNEXION -->  
+                <?php if (isset($_SESSION['user_email'])): ?>
+                    <li id="li-deconnexion"><a href="deconnexion.php">Déconnexion</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>

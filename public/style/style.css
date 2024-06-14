@@ -2,6 +2,10 @@ html,
 body {
   box-sizing: border-box;
   overflow-x: hidden;
+  background-image: url(/img/ftuy4.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 div#wrapp {
   display: grid;
@@ -66,11 +70,53 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 100px 0;
+}
+div#bienvenue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+div p {
+  font-size: 1.2em;
 }
 form {
-  border: 1px solid black;
-  padding: 30px;
-  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  max-width: 500px; /* Ajusté pour plus de largeur */
+  margin: auto;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+label {
+  margin-top: 10px;
+  margin-bottom: 8px;
+  text-align: left;
+}
+.submit {
+  font-weight: bold;
+  margin-top: 15px;
+  border: none;
+  background-color: #007bff;
+  padding: 8px;
+  color: #fff;
+  border-radius: 10px;
+}
+.submit:hover,
+.submit:focus {
+  cursor: pointer;
+  color: #007bff;
+  background-color: #ccc;
+}
+textarea {
+  resize: none;
+  height: 30px;
 }
 .form-container {
   display: flex;
@@ -97,17 +143,25 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 210px;
+  height: 200px;
   margin-top: auto;
   background-color: #fff;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
   padding: 1rem;
 }
 
+li#li-deconnexion a {
+  color: white;
+  padding: 7px;
+  background-color: #007bff;
+  border-radius: 15px;
+}
+
 /* Adaptation smartphone */
 @media screen and (max-width: 480px) {
   body {
     background-color: #f9f2e5;
+    background-image: none;
   }
   div#wrapp {
     grid-template-columns: 1fr;
@@ -118,21 +172,33 @@ footer {
   }
 
   header {
-    height: 110px;
+    height: 120px;
+    margin-bottom: 50px;
     padding: 10px;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
   }
+
   nav {
     width: 100%;
   }
+
+  header nav ul li {
+    padding-right: 0.9rem;
+  }
+
   h1 {
     margin: auto;
     font-size: 1.8em;
   }
+
   main {
     padding: 10px;
+    flex-direction: column;
+  }
+  form {
+    max-width: 80%;
   }
   footer {
     height: 180px;

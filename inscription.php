@@ -40,11 +40,12 @@ if (empty($erreurs) && isset($resultat['data'])) {
 
         $requete->execute();
 
-        echo "<p>Inscription réussie !</p>";
+        $succes = "Inscription réussie";
     } catch (PDOException $e) {
         echo "<p>Erreur d'exécution de requête : " . $e->getMessage() . "</p>";
     } 
 }  
+ 
 ?>
 
 <div class="form-container">
@@ -54,29 +55,32 @@ if (empty($erreurs) && isset($resultat['data'])) {
             foreach ($erreurs as $erreur) {
                 echo "<p>" . htmlspecialchars($erreur) . "</p>";
             }
+        }  
+        if (!empty($succes)) {
+            echo "<p style='color: #50C72D;'  class='succes'>" . htmlspecialchars($succes) . "</p>";
         }
         ?>
 
-<form method="POST" action="inscription.php">
+<form  method="POST" action="inscription.php">
 
     <label for="inscription_pseudo">Pseudo:</label>
     <input type="text" id="inscription_pseudo" name="inscription_pseudo">
-    <?php echo !empty($errors['pseudo']) ? '<div style="color: red;">' . $errors['pseudo'] . '</div>' : ''; ?>
+  
     <br><br>
 
     <label for="inscription_email">Email :</label>
     <input type="email" id="inscription_email" name="inscription_email" required>
-    <?php echo !empty($errors['email']) ? '<div style="color: red;">' . $errors['email'] . '</div>' : ''; ?>
+
     <br><br>
 
     <label for="inscription_mdp">Mot de passe :</label>
     <input type="password" id="inscription_mdp" name="inscription_mdp" minlength="2" maxlength="72" required>
-    <?php echo !empty($errors['mdp']) ? '<div style="color: red;">' . $errors['mdp'] . '</div>' : ''; ?>
+
     <br><br>
 
     <label for="inscription_confirmation_mdp">Confirmation mot de passe :</label>
     <input type="password" id="inscription_confirmation_mdp" name="inscription_confirmation_mdp" minlength="2" maxlength="72" required>
-    <?php echo !empty($errors['confirmationMdp']) ? '<div style="color: red;">' . $errors['confirmationMdp'] . '</div>' : ''; ?>
+
     <br><br>
 
     <button class="submit" type="submit">Envoyer</button>

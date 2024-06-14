@@ -23,7 +23,7 @@ $success = isset($result['success']) ? $result['success'] : '';
         ?>
     </div>
 
-    <form id="contact" method="post" action="contact.php">
+    <form method="post" action="contact.php">
         <label for="nom">Nom :</label>
         <input type="text" id="nom" name="nom" required>
         <br><br>

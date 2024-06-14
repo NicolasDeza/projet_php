@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 setcookie("user_name", $pseudo, time() + 3600);
                 echo "<p>" . "Vous êtes bien connecté avec vos accès : " . $_COOKIE['user_email'] . $_COOKIE['user_name'] . "</p>";
 
-                header("Location: bienvenue.php"); // Redirection vers la page de bienvenue
+                header("Location: bienvenue.php"); 
                 exit;
 
             } else {
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ?>
 
 
-<form id="connexion" method="post" action="" >
+<form  method="POST" action="" >
     <label for="connexion_email">Email :</label>
     <input type="email" id="connexion_email" name="connexion_email" required>
     <br><br>
