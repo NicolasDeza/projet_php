@@ -21,6 +21,12 @@ if (empty($erreurs) && isset($resultat['data'])) {
     $email = $data['email'];
     $mdp = $data['mdp'];
 
+    // $nomDuServeur = "localhost";      // Test local
+    // $nomUtilisateur = "root";
+    // $motDePasse = ""; 
+    // $nomBaseDeDonnees = "projet_php";
+
+
     $nomDuServeur = "sql308.infinityfree.com";
     $nomUtilisateur = "if0_36730460";
     $motDePasse = "35ShuX2HiwVdMM"; 
@@ -39,8 +45,11 @@ if (empty($erreurs) && isset($resultat['data'])) {
         $requete->bindParam(':mdp', $mdpHash);
 
         $requete->execute();
-
+        
         $succes = "Inscription réussie";
+
+        header("Location: connexion.php"); 
+                exit;
     } catch (PDOException $e) {
         echo "<p>Erreur d'exécution de requête : " . $e->getMessage() . "</p>";
     } 
