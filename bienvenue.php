@@ -21,16 +21,14 @@ $email = $_SESSION['user_email'];
 
 
 <div id="bienvenue">
+    
 <h1>Bienvenue <?=  htmlspecialchars($nomUtilisateur); ?>, tu es bien connecté !</h1>
 
 <p id="data">Votre email : <?= htmlspecialchars($email) ?></p>
 
 </div>
-<br>
-<!-- 
-<form id="deconnexion" action="deconnexion.php" method="POST">
-    <button type="submit">Déconnexion</button>
-</form> -->
+
+
 
 
 
