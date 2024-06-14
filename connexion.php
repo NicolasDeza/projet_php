@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nomDuServeur = "sql308.infinityfree.com";
         $nomUtilisateur = "if0_36730460";
         $motDePasse = "35ShuX2HiwVdMM"; 
-        $nomBaseDeDonnees = "if0_36730460_";
+        $nomBaseDeDonnees = "if0_36730460_projet_php";
 
         try {
             $pdo = new PDO("mysql:host=$nomDuServeur;dbname=$nomBaseDeDonnees", $nomUtilisateur,$motDePasse);
