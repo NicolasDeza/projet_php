@@ -1,6 +1,7 @@
 <?php
-function traiterFormulaireContact() {
+function validationContact() {
     $erreurs = [];
+    $succes ="";
 
     // Vérification si la méthode d'envoi est bien "POST"
     if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST)) {
@@ -38,26 +39,15 @@ function traiterFormulaireContact() {
         } elseif (strlen($message) < 10 || strlen($message) > 3000) {
             $erreurs[] = "Le message ne peut contenir qu'entre 10 et 3000 caractères.";
         }
-
+         if(empty($erreurs)) {
+            $succes = "Votre messagee a bien été envoyé avec succès.";
+         }
       
     }
 
-    return ["errors" => $erreurs];
+    return ["errors" => $erreurs, "succes" => $succes];
 }
 ?>
 
 
 
-<!-- // Si aucune erreur, envoyer l'email
-    if (empty($erreurs)) {
-        $destinataire = "nicolasdeza@hotmail.be";  // Votre adresse email
-        $sujet = "Message de contact de $prenom $nom";
-        $corps = "Nom: $nom\nPrénom: $prenom\nEmail: $email\nMessage: $message";
-        $headers = "From: $email";  // Attention à la configuration de l'en-tête pour éviter d'être marqué comme spam
-
-        if (mail($destinataire, $sujet, $corps, $headers)) {
-            echo "<p>Merci de nous avoir contacté, $prenom $nom.</p>";
-        } else {
-            $erreurs[] = "Erreur lors de l'envoi du message. Veuillez réessayer.";
-        }
-    } -->

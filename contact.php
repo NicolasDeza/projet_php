@@ -7,9 +7,10 @@ define('DS', DIRECTORY_SEPARATOR);
 require_once __DIR__ . DS . "components" . DS . "header.php";
 require_once __DIR__ . DS . "gestionFormulaire" . DS . "gestionContact.php";
 
-$result = traiterFormulaireContact();
-$erreurs = isset($result['errors']) ? $result['errors'] : [];
-$success = isset($result['success']) ? $result['success'] : '';
+$resultat = validationContact(); 
+
+$erreurs = isset($resultat["errors"]) ? $resultat["errors"] : [];
+$succes = isset($resultat['succes']) ? $resultat["succes"] : "";
 ?>
 
 <div class="form-container">
@@ -20,10 +21,14 @@ $success = isset($result['success']) ? $result['success'] : '';
                 echo "<p>" . htmlspecialchars($erreur) . "</p>";
             }
         }
+        if(!empty($succes)) {
+            echo "<p style='color: green';>" . htmlspecialchars($succes) . '</p>';
+        }
         ?>
     </div>
 
     <form method="post" action="contact.php">
+        
         <label for="nom">Nom :</label>
         <input type="text" id="nom" name="nom" required>
         <br><br>

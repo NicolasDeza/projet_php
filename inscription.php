@@ -5,26 +5,14 @@ $metaDescription = "Inscrivez-vous";
 define('DS', DIRECTORY_SEPARATOR);
 
 require_once __DIR__ . DS . "components" . DS . "header.php";
-
-?>
-
-
-<?php
-
 require_once __DIR__ . DS . "gestionFormulaire" . DS . "gestionInscription.php";
-$resultat = validationInscription();
-$erreurs = $resultat['errors'];
 
-if (empty($erreurs) && isset($resultat['data'])) {
-    $data = $resultat['data'];
-    $pseudo = $data['pseudo'];
-    $email = $data['email'];
-    $mdp = $data['mdp'];
+$erreurs = validationInscription();
 
-    // $nomDuServeur = "localhost";      // Test local
-    // $nomUtilisateur = "root";
-    // $motDePasse = ""; 
-    // $nomBaseDeDonnees = "projet_php";
+if ($_SERVER["REQUEST_METHOD"] === "POST" && empty($erreurs)) {
+    $pseudo = htmlspecialchars($_POST["inscription_pseudo"]);
+    $email = htmlspecialchars($_POST["inscription_email"]);
+    $mdp = password_hash(htmlspecialchars($_POST["inscription_mdp"]), PASSWORD_DEFAULT);
 
 
     $nomDuServeur = "sql308.infinityfree.com";
@@ -33,44 +21,35 @@ if (empty($erreurs) && isset($resultat['data'])) {
     $nomBaseDeDonnees = "if0_36730460_projet_php";
 
     try {
-        $pdo = new PDO("mysql:host=$nomDuServeur;dbname=$nomBaseDeDonnees", $nomUtilisateur,$motDePasse);
+        $pdo = new PDO("mysql:host=$nomDuServeur;dbname=$nomBaseDeDonnees", $nomUtilisateur, $motDePasse);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $mdpHash = password_hash($mdp, PASSWORD_DEFAULT);
-
         $requete = $pdo->prepare("INSERT INTO utilisateurs (pseudo, email, mot_de_passe) VALUES (:pseudo, :email, :mdp)");
-         
         $requete->bindParam(':pseudo', $pseudo);
         $requete->bindParam(':email', $email);
-        $requete->bindParam(':mdp', $mdpHash);
+        $requete->bindParam(':mdp', $mdp);
 
         $requete->execute();
-        
-        $succes = "Inscription réussie";
 
         header("Location: connexion.php"); 
-                exit;
-    } catch (PDOException $e) {
-        echo "<p>Erreur d'exécution de requête : " . $e->getMessage() . "</p>";
+        exit;
+    } catch(PDOException $e) {
+        echo "<p style='color: red;'>Erreur d'exécution de requête : " . $e->getMessage() . "</p>";
     } 
-}  
- 
+}
 ?>
 
 <div class="form-container">
-    <div class="error-messages">
+    <div class="messages">
         <?php
         if (!empty($erreurs)) {
             foreach ($erreurs as $erreur) {
-                echo "<p>" . htmlspecialchars($erreur) . "</p>";
+                echo "<p style='color: red;'>" . htmlspecialchars($erreur) . "</p>";
             }
-        }  
-        if (!empty($succes)) {
-            echo "<p style='color: #50C72D;'  class='succes'>" . htmlspecialchars($succes) . "</p>";
         }
         ?>
-
-<form  method="POST" action="inscription.php">
+    </div>
+  <form   method="POST" action="inscription.php">
 
     <label for="inscription_pseudo">Pseudo:</label>
     <input type="text" id="inscription_pseudo" name="inscription_pseudo">
@@ -95,9 +74,7 @@ if (empty($erreurs) && isset($resultat['data'])) {
     <button class="submit" type="submit">Envoyer</button>
 
 </form>
-
-
-
+</div>
 <?php 
 require_once __DIR__ . DS . "components" . DS . "footer.php";
 ?>
